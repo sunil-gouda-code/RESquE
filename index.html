@@ -1,1 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Ambulance Booking | Sunil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Basic styling -->
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            color: #e5e7eb;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 960px;
+            background: #020617;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border: 1px solid #1e293b;
+        }
+
+        header {
+            padding: 24px 24px 16px;
+            border-bottom: 1px solid #1e293b;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: radial-gradient(circle at 30% 30%, #f97316, #dc2626 60%, #7f1d1d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .brand-text h1 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .brand-text p {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .emergency-call {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+        }
+
+        .emergency-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #f97316;
+        }
+
+        .call-button {
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: none;
+            background: linear-gradient(135deg, #dc2626, #f97316);
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .call-button span.icon {
+            background: rgba(15, 23, 42, 0.3);
+            padding: 4px;
+            border-radius: 999px;
+            font-size: 14px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 0;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .emergency-call {
+                align-items: flex-start;
+            }
+        }
+
+        .left {
+            padding: 24px;
+            border-right: 1px solid #1e293b;
+        }
+
+        @media (max-width: 768px) {
+            .left {
+                border-right: none;
+                border-bottom: 1px solid #1e293b;
+            }
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            font-size: 11px;
+            color: #a7f3d0;
+            margin-bottom: 14px;
+        }
+
+        .hero-tag-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #22c55e;
+            box-shadow: 0 0 10px #22c55e;
+        }
+
+        .hero-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .hero-title span {
+            color: #f97316;
+        }
+
+        .hero-subtitle {
+            font-size: 13px;
+            color: #9ca3af;
+            margin-bottom: 20px;
+        }
+
+        .hero-highlight {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .hero-highlight-item {
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: #020617;
+            border: 1px solid #1e293b;
+            font-size: 11px;
+            color: #e5e7eb;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hero-highlight-item span.icon {
+            font-size: 13px;
+        }
+
+        .hero-footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            font-size: 11px;
+            color: #9ca3af;
+        }
+
+        .hero-badge strong {
+            color: #e5e7eb;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 11px;
+            color: #9ca3af;
+        }
+
+        .hero-stats span strong {
+            display: block;
+            color: #e5e7eb;
+            font-size: 13px;
+        }
+
+        /* FORM */
+
+        .right {
+            padding: 24px;
+            background: radial-gradient(circle at top left, rgba(248, 113, 113, 0.15), transparent 55%),
+                        radial-gradient(circle at bottom right, rgba(96, 165, 250, 0.15), transparent 55%);
+        }
+
+        .form-card {
+            background: rgba(15, 23, 42, 0.96);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid #1e293b;
+            backdrop-filter: blur(12px);
+        }
+
+        .form-header {
+            margin-bottom: 16px;
+        }
+
+        .form-header h2 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .form-header p {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            font-size: 11px;
+            margin-bottom: 4px;
+            color: #9ca3af;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 10px;
+            border: 1px solid #1f2937;
+            background: #020617;
+            color: #e5e7eb;
+            font-size: 13px;
+            outline: none;
+            transition: border 0.15s, box-shadow 0.15s, background 0.15s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #f97316;
+            box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.4);
+            background: #020617;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .form-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .primary-btn {
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, #dc2626, #f97316);
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .primary-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .primary-btn span.icon {
+            font-size: 16px;
+        }
+
+        .form-note {
+            font-size: 11px;
+            color: #9ca3af;
+        }
+
+        .danger-text {
+            color: #f97316;
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #22c55e;
+        }
+
+        .error-message {
+            display: none;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #f97316;
+        }
+
+        footer {
+            padding: 10px 20px 16px;
+            border-top: 1px solid #1e293b;
+            font-size: 11px;
+            color: #6b7280;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        footer a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+<div class="page">
+    <header>
+        <div class="brand">
+            <div class="logo">🚑</div>
+            <div class="brand-text">
+                <h1>QuickAid Ambulance</h1>
+                <p>24×7 Emergency Medical Transport</p>
+            </div>
+        </div>
+
+        <div class="emergency-call">
+            <span class="emergency-label">Emergency only</span>
+            <!-- CHANGE THIS PHONE NUMBER -->
+            <a href="tel:+918310927283" class="call-button">
+                <span class="icon">📞</span>
+                Call now: +91 83109 27283
+            </a>
+        </div>
+    </header>
+
+    <main class="content">
+        <!-- LEFT SIDE: TEXT -->
+        <section class="left">
+            <div class="hero-tag">
+                <span class="hero-tag-dot"></span>
+                <span>Live ambulance booking</span>
+            </div>
+
+            <h2 class="hero-title">
+                Book an <span>ambulance</span> in under 30 seconds.
+            </h2>
+
+            <p class="hero-subtitle">
+                Fill the form or tap the call button for instant support. We collect
+                your location and emergency details and send them directly to our
+                dispatch team on WhatsApp.
+            </p>
+
+            <div class="hero-highlight">
+                <div class="hero-highlight-item">
+                    <span class="icon">⚡</span>
+                    Average response under 10 minutes*
+                </div>
+                <div class="hero-highlight-item">
+                    <span class="icon">🧑‍⚕️</span>
+                    Basic life support & oxygen
+                </div>
+                <div class="hero-highlight-item">
+                    <span class="icon">📍</span>
+                    GPS-based pickup guidance
+                </div>
+            </div>
+
+            <div class="hero-footer">
+                <div class="hero-badge">
+                    *Actual response time depends on traffic and availability.
+                </div>
+                <div class="hero-stats">
+                    <span><strong>24×7</strong> Service</span>
+                    <span><strong>City-wide</strong> Coverage</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- RIGHT SIDE: FORM -->
+        <section class="right">
+            <div class="form-card">
+                <div class="form-header">
+                    <h2>Book an ambulance</h2>
+                    <p>Enter patient and pickup details. We’ll forward this instantly to dispatch via WhatsApp.</p>
+                </div>
+
+                <form id="bookingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="patientName">Patient name</label>
+                            <input id="patientName" name="patientName" type="text" required placeholder="Full name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Contact number</label>
+                            <input id="phone" name="phone" type="tel" required placeholder="+91 XXXXX XXXXX" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pickupLocation">Pickup location</label>
+                        <textarea id="pickupLocation" name="pickupLocation" required placeholder="Exact address, nearby landmark"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="emergencyType">Emergency type</label>
+                            <select id="emergencyType" name="emergencyType" required>
+                                <option value="">Select</option>
+                                <option value="Accident / Trauma">Accident / Trauma</option>
+                                <option value="Heart / Chest pain">Heart / Chest pain</option>
+                                <option value="Breathing issue">Breathing issue</option>
+                                <option value="Pregnancy / Delivery">Pregnancy / Delivery</option>
+                                <option value="Stroke / Paralysis">Stroke / Paralysis</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pickupTime">Pickup time</label>
+                            <select id="pickupTime" name="pickupTime" required>
+                                <option value="Immediate (ASAP)">Immediate (ASAP)</option>
+                                <option value="Within 15 minutes">Within 15 minutes</option>
+                                <option value="Within 30 minutes">Within 30 minutes</option>
+                                <option value="Scheduled today">Scheduled today</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Additional notes (optional)</label>
+                        <textarea id="notes" name="notes" placeholder="Patient age, condition, hospital preference, etc."></textarea>
+                    </div>
+
+                    <div class="form-footer">
+                        <button type="submit" class="primary-btn" id="submitBtn">
+                            <span class="icon">🚑</span>
+                            Send booking via WhatsApp
+                        </button>
+
+                        <p class="form-note">
+                            <span class="danger-text">Important:</span> This form will open WhatsApp with a pre-filled
+                            message to our team. You must press <strong>Send</strong> in WhatsApp to complete the booking.
+                        </p>
+
+                        <p class="success-message" id="successMessage">
+                            WhatsApp opened. If it didn't, check popup block or send details manually.
+                        </p>
+                        <p class="error-message" id="errorMessage">
+                            Please fill all required fields correctly.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span>© <span id="year"></span> QuickAid Ambulance. All rights reserved.</span>
+        <span>Built by Sunil using GitHub Pages.</span>
+    </footer>
+</div>
+
+<script>
+    // CHANGE THIS TO YOUR WHATSAPP NUMBER (IN INTERNATIONAL FORMAT, NO SPACES)
+    const DISPATCH_WHATSAPP_NUMBER = "918310927283";  // example: 91 + your 10-digit number
+
+    const form = document.getElementById("bookingForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const successMessage = document.getElementById("successMessage");
+    const errorMessage = document.getElementById("errorMessage");
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        successMessage.style.display = "none";
+        errorMessage.style.display = "none";
+
+        const patientName = document.getElementById("patientName").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const pickupLocation = document.getElementById("pickupLocation").value.trim();
+        const emergencyType = document.getElementById("emergencyType").value;
+        const pickupTime = document.getElementById("pickupTime").value;
+        const notes = document.getElementById("notes").value.trim();
+
+        if (!patientName || !phone || !pickupLocation || !emergencyType || !pickupTime) {
+            errorMessage.style.display = "block";
+            return;
+        }
+
+        submitBtn.disabled = true;
+
+        const message =
+            "🚑 NEW AMBULANCE BOOKING REQUEST 🚑\n\n" +
+            "Patient: " + patientName + "\n" +
+            "Contact: " + phone + "\n" +
+            "Pickup location: " + pickupLocation + "\n" +
+            "Emergency type: " + emergencyType + "\n" +
+            "Pickup time: " + pickupTime + "\n" +
+            (notes ? "Notes: " + notes + "\n" : "") +
+            "\nSent from QuickAid Ambulance booking website.";
+
+        const url =
+            "https://wa.me/" +
+            DISPATCH_WHATSAPP_NUMBER +
+            "?text=" +
+            encodeURIComponent(message);
+
+        window.open(url, "_blank");
+
+        successMessage.style.display = "block";
+        submitBtn.disabled = false;
+        form.reset();
+    });
+</script>
+</body>
+</html>
