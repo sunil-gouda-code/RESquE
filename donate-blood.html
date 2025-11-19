@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate Blood – RESQuE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="donate-bg">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand">RESQuE</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="donate-blood.html" class="active">Donate Blood</a></li>
+      <li><a href="donors.html">Donors</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <h1>Become a Blood Donor</h1>
+    <p>One donation can save up to three lives.</p>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <section class="content-section">
+
+    <h2>Register as a Donor</h2>
+
+    <form id="donorForm" class="booking-form">
+
+      <!-- Name -->
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" id="donorName" required />
+        <div class="field-error" id="err-donorName"></div>
+      </div>
+
+      <!-- Phone -->
+      <div class="form-group">
+        <label>Contact Number *</label>
+        <input type="text" id="donorPhone" placeholder="+91 XXXXX XXXXX" required />
+        <div class="field-error" id="err-donorPhone"></div>
+      </div>
+
+      <!-- Blood group -->
+      <div class="form-group">
+        <label>Blood Group *</label>
+        <select id="donorBlood" required>
+          <option value="">Select</option>
+          <option>A+</option>
+          <option>A-</option>
+          <option>B+</option>
+          <option>B-</option>
+          <option>O+</option>
+          <option>O-</option>
+          <option>AB+</option>
+          <option>AB-</option>
+        </select>
+        <div class="field-error" id="err-donorBlood"></div>
+      </div>
+
+      <!-- Location -->
+      <div class="form-group">
+        <label>City / Area *</label>
+        <input type="text" id="donorCity" required />
+        <div class="field-error" id="err-donorCity"></div>
+      </div>
+
+      <!-- Notes -->
+      <div class="form-group">
+        <label>Additional Info (Optional)</label>
+        <textarea id="donorNotes" placeholder="Health info, availability, etc."></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-booking">Register</button>
+        <div id="donor-status"></div>
+      </div>
+
+    </form>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 RESQuE Emergency Services. All rights reserved.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
