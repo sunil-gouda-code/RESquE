@@ -2,7 +2,7 @@
 (function () {
   // ====== CONFIG ======
   // Your ambulance company WhatsApp number (no + or spaces)
-  const DISPATCH_NUMBER = "https://wa.me/918310927283";
+  const DISPATCH_NUMBER = "918310927283";
 
   // localStorage key for donors
   const DONOR_STORAGE_KEY = "resque_donors_v1";
